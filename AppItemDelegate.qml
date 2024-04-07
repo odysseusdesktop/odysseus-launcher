@@ -20,7 +20,7 @@ Item {
         MouseArea {
             anchors.fill: parent
 
-            onPressed: {
+            onClicked: {
                 ProcessHelper.start(DesktopEntryReader.getExec(iconIndex));
                 viewManager.hideView();
             }

@@ -10,6 +10,7 @@
 #include <QPixmap>
 #include <KDesktopFile>
 #include <KConfigGroup>
+#include "applicationmodel.h"
 
 class DesktopEntryReader : public QObject
 {
@@ -24,10 +25,9 @@ public slots:
     QString getExec(int index);
 
 private:
-    bool isGui(KDesktopFile& file);
-    QString searchDirectory {"/usr/share/applications/"};
-    QList<QImage*> iconImages;
-    QList<KDesktopFile*> desktopFiles;
+    QString searchDirectory{"/usr/share/applications/"};
+    QString flatpakSearchDirectory{"/var/lib/flatpak/app/"};
+    QList<ApplicationModel*> apps;
 };
 
 #endif // DESKTOPENTRYREADER_H

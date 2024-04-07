@@ -22,6 +22,8 @@ add_executable(odysseus-launcher
     iconimageprovider.cpp
     processhelper.h
     processhelper.cpp
+    applicationmodel.h
+    applicationmodel.cpp
     ${RESOURCES}
 )
 
