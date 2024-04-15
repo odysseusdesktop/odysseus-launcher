@@ -35,17 +35,15 @@ QImage *ApplicationModel::getIcon() {
 
 bool ApplicationModel::isGui() {
     if (desktopFile == nullptr) {
-        // Handle null pointer gracefully
         return false;
     }
 
-    // Read necessary entries from the desktop file
     QString terminal = desktopFile->desktopGroup().readEntry("Terminal", "");
     QString icon = desktopFile->desktopGroup().readEntry("Icon", "");
     QString startupWMClass = desktopFile->desktopGroup().readEntry("StartupWMClass", "");
+    QString genericName = desktopFile->readGenericName();
 
-    // Check if the application is GUI based on the presence of certain entries
-    bool isGui = (!terminal.toLower().trimmed().compare("false") && !icon.isEmpty()) || !startupWMClass.isEmpty();
+    bool isGui = (!terminal.toLower().trimmed().compare("false") && !icon.isEmpty()) || !startupWMClass.isEmpty() || !genericName.isEmpty();
 
     return isGui;
 }
