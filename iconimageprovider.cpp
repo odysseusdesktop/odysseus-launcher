@@ -12,10 +12,20 @@ QImage IconImageProvider::requestImage(const QString &id, QSize *size, const QSi
     Q_UNUSED(size)
     Q_UNUSED(requestedSize)
 
-    bool ok;
-    int index = id.toInt(&ok);
-    if (ok && index >= 0 && index < this->reader->getGuiAppIcons().size()) {
-        return *this->reader->getGuiAppIcons()[index];
+    // Check if the id is a valid integer (index)
+    bool isIndex;
+    int index = id.toInt(&isIndex);
+
+    if (!isIndex) {
+        // If id is not a valid integer, treat it as app name and find its index
+        QStringList appNames = reader->getGuiAppNames();
+        index = appNames.indexOf(id);
+    }
+
+    qDebug() << "IconImageProvider: " << index;
+
+    if (index >= 0 && index < reader->getGuiAppIcons().size()) {
+        return *reader->getGuiAppIcons()[index];
     } else {
         QIcon placeholderIcon = QIcon::fromTheme("unknown");
         return placeholderIcon.pixmap(64, 64).toImage();

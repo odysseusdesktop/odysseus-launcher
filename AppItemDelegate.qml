@@ -8,7 +8,7 @@ Item {
     width: 64
     height: 64
 
-    property int iconIndex
+    property var iconIndex
     property string appName
 
 
@@ -21,7 +21,7 @@ Item {
             anchors.fill: parent
 
             onClicked: {
-                ProcessHelper.start(DesktopEntryReader.getExec(iconIndex));
+                ProcessHelper.start(DesktopEntryReader.getExecByName(iconIndex));
                 viewManager.hideView();
             }
         }

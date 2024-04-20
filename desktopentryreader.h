@@ -23,6 +23,7 @@ public slots:
     QStringList getGuiAppNames();
     QImage getIconImage(int index);
     QString getExec(int index);
+    QString getExecByName(QString appName);
 
 private:
     QString searchDirectory{"/usr/share/applications/"};

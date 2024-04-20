@@ -83,6 +83,18 @@ QString DesktopEntryReader::getExec(int index)
     return execs[index];
 }
 
+QString DesktopEntryReader::getExecByName(QString appName)
+{
+    for (ApplicationModel* app : this->apps) {
+        if (app->isGui() && app->getName() == appName) {
+            return app->getExec();
+        }
+    }
+
+    return "";
+}
+
+
 QList<QImage*> DesktopEntryReader::getGuiAppIcons()
 {
     QList<QImage*> icons;
